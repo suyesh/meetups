@@ -7,11 +7,14 @@ import './index.css';
 import App from './app/layout/App';
 import { configureStore } from './app/store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
+import ScrollToTop from './app/common/utils/ScrollToTop';
 
 const AppWithRoute = () => (
   <Provider store={configureStore()}>
     <BrowserRouter>
-      <App/>
+      <ScrollToTop>
+        <App/>
+      </ScrollToTop>
     </BrowserRouter>
   </Provider>
 )
