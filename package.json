@@ -35,8 +35,9 @@
     "semantic-ui-react": "^0.79.0"
   },
   "scripts": {
+    "deploy-dev": "yarn build && cd build && mv index.html 200.html && surge",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build &&  sw-precache --root='build/' --static-file-globs='build/**/!(*map*)' && gzip -r -9k build/static/js && gzip -r -9k build/static/css",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
