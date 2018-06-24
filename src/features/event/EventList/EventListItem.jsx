@@ -4,7 +4,7 @@ import EventListAtendee from './EventListAtendee'
 
 class EventListItem extends Component {
   renderAtendees = () => (
-    this.props.event.attendees.map((attendee) => (
+    this.props.event.attendees && this.props.event.attendees.map((attendee) => (
       <EventListAtendee attendee={attendee} key={attendee.id}/>
     ))
   )

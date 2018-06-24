@@ -9,7 +9,7 @@ class NavBar extends Component {
         <Container>
           <Menu.Item header>
             <img src={Logo} alt="logo" />
-            Oh Wow!
+            Meetups
           </Menu.Item>
           <Menu.Item name="Events" />
           <Menu.Item>
