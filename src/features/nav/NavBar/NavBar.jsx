@@ -6,16 +6,18 @@ import Logo from "../../../app/assets/images/logo.png"
 import SignedOutMenu from '../Menus/SignedOutMenu';
 import SignedInMenu from '../Menus/SignedInMenu';
 import { openModal } from '../../modals/modalActions';
+import { logout } from '../../auth/authActions'
 
 const actions = {
-  openModal
+  openModal,
+  logout
 }
 
-class NavBar extends Component {
-  state = {
-    authenticated: false
-  }
+const mapState = ({ auth }) => ({
+  auth
+})
 
+class NavBar extends Component {
   handleSignIn = () => {
     this.props.openModal('LoginModal')
   }
@@ -25,21 +27,19 @@ class NavBar extends Component {
   }
 
   handleSignOut = () => {
-    this.setState({
-      authenticated: false
-    });
+    this.props.logout()
     this.props.history.push('/')
   }
 
   authenticatedButtons = () => {
-    if (this.state.authenticated) {
+    if (this.props.auth.authenticated) {
       return (
         <Fragment>
           <Menu.Item as={NavLink} to='/people' name="People" />
           <Menu.Item>
             <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
           </Menu.Item>
-          <SignedInMenu signOut={this.handleSignOut}/>
+          <SignedInMenu signOut={this.handleSignOut} currentUser={this.props.auth.currentUser}/>
         </Fragment>
       )
     }
@@ -62,4 +62,4 @@ class NavBar extends Component {
   }
 }
 
-export default withRouter(connect(null, actions)(NavBar));
+export default withRouter(connect(mapState, actions)(NavBar));
