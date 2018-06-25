@@ -105,3 +105,7 @@ body {
   padding-bottom: 0 !important;
   padding-left: 2em !important;
 }
+
+#PlacesAutocomplete__autocomplete-container {
+  z-index: 1000 !important;
+}
