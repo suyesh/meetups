@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import EventList from '../EventList/EventList';
 import { deleteEvent } from '../eventActions';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
+import EventActivity from '../EventActivity/EventActivity'
 
 const mapState = ({ events, async: { loading } }) => ({
   events,
@@ -15,6 +16,7 @@ const actions = {
 }
 
 class EventDashboard extends Component {
+
   handleDeleteEvent = (eventId) => () => {
     this.props.deleteEvent(eventId)
   }
@@ -24,11 +26,12 @@ class EventDashboard extends Component {
     if (loading) return <LoadingComponent inverted={true}/>
     return(
       <Grid>
-        <Grid.Column width={10}>
-          <EventList deleteEvent={this.handleDeleteEvent} events={events}/>
-        </Grid.Column>
-        <Grid.Column width={6}>
-        </Grid.Column>
+          <Grid.Column width={10}>
+              <EventList deleteEvent={this.handleDeleteEvent} events={events}/>
+          </Grid.Column>
+          <Grid.Column width={6}>
+             <EventActivity/>
+          </Grid.Column>
       </Grid>
     )
   }
