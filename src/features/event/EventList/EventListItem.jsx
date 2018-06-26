@@ -6,8 +6,8 @@ import EventListAtendee from './EventListAtendee'
 
 class EventListItem extends Component {
   renderAtendees = () => (
-    this.props.event.attendees && this.props.event.attendees.map((attendee) => (
-      <EventListAtendee attendee={attendee} key={attendee.id}/>
+    this.props.event.attendees && Object.values(this.props.event.attendees).map((attendee, index) => (
+      <EventListAtendee attendee={attendee} key={index}/>
     ))
   )
 
@@ -30,7 +30,7 @@ class EventListItem extends Component {
        </Segment>
        <Segment>
          <span>
-           <Icon name="clock" /> { format(date, 'dddd Do MMMM') }  at { format(date, 'HH:MM')}|
+           <Icon name="clock" /> { format(this.props.event["date "].toDate(), 'dddd Do MMMM') }  at { format(this.props.event["date "].toDate(), 'HH:MM')}|
            <Icon name="marker" /> { venue }
          </span>
        </Segment>

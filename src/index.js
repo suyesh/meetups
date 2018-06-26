@@ -10,10 +10,8 @@ import App from './app/layout/App';
 import { configureStore } from './app/store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
 import ScrollToTop from './app/common/utils/ScrollToTop';
-import { loadEvents } from './features/event/eventActions'
 
 const store = configureStore()
-store.dispatch(loadEvents())
 
 const AppWithRoute = () => (
   <Provider store={store}>
