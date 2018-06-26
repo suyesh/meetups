@@ -29,6 +29,7 @@
     "redux-auth-wrapper": "^2.0.2",
     "redux-firestore": "^0.3.2",
     "redux-form": "^7.3.0",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "revalidate": "^1.2.0",
     "semantic-ui-css": "2.2.14",
