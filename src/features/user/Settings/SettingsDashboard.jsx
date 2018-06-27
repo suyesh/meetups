@@ -21,7 +21,7 @@ const mapState = (state) => ({
 })
 
 const SettingsDashboard = ({ updatePassword, providerId, user, updateProfile }) => (
-  <Grid>
+  <Grid stackable column={2}>
     <Grid.Column width={12}>
       <Switch>
         <Redirect exact from='/settings' to='/settings/basic'/>

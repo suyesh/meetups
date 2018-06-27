@@ -26,7 +26,7 @@ class EventDashboard extends Component {
     const { events , loading} = this.props
     if (loading) return <LoadingComponent inverted={true}/>
     return(
-      <Grid>
+      <Grid stackable>
           <Grid.Column width={10}>
               <EventList deleteEvent={this.handleDeleteEvent} events={events}/>
           </Grid.Column>

@@ -49,7 +49,7 @@ class NavBar extends Component {
   render(){
     return(
       <Menu inverted fixed="top">
-        <Container>
+        <Container fluid>
           <Menu.Item as={Link} to='/' header>
             <img src={Logo} alt="logo" />
             Meetups
