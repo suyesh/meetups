@@ -27,6 +27,7 @@ const AppWithRoute = () => (
     </BrowserRouter>
   </Provider>
 )
-
-render(<AppWithRoute/>, document.getElementById('root'));
+store.firebaseAuthIsReady.then(() => {
+  render(<AppWithRoute/>, document.getElementById('root'));
+})
 registerServiceWorker();
