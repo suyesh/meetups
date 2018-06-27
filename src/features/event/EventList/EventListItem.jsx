@@ -12,7 +12,7 @@ class EventListItem extends Component {
   )
 
   render(){
-    const { hostPhotoURL, title, hostedBy, date, venue, description } = this.props.event
+    const { hostPhotoURL, title, hostedBy, venue, description } = this.props.event
     return(
       <Segment.Group>
        <Segment>
