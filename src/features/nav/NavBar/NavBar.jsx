@@ -39,7 +39,7 @@ class NavBar extends Component {
           <Menu.Item>
             <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
           </Menu.Item>
-          <SignedInMenu signOut={this.handleSignOut} profile={this.props.profile}/>
+          <SignedInMenu auth={this.props.auth} signOut={this.handleSignOut} profile={this.props.profile}/>
         </Fragment>
       )
     }
