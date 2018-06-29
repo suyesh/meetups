@@ -5,7 +5,6 @@ import { Segment, Form, Button, Grid, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { withFirestore } from 'react-redux-firebase'
-import moment from 'moment';
 import Script from 'react-load-script';
 import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan } from 'revalidate';
 import { reduxForm, Field } from 'redux-form';

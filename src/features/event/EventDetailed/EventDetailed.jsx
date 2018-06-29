@@ -6,7 +6,6 @@ import EventDetailedHeader from './EventDetailedHeader';
 import EventDetailedInfo from './EventDetailedInfo';
 import EventDetailedChat from './EventDetailedChat';
 import EventDetailedSidebar from './EventDetailedSidebar';
-import { toastr } from 'react-redux-toastr'
 import {objectToArray } from '../../../app/common/utils/helpers'
 import { goingToEvent, cancelGoingToEvent } from '../../user/userActions'
 

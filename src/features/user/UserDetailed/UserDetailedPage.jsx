@@ -1,34 +1,37 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
+import { firestoreConnect, isEmpty } from 'react-redux-firebase';
 import { compose } from 'redux';
 import {Button, Card, Grid, Header, Icon, Image, Item, List, Menu, Segment} from "semantic-ui-react";
 import differenceInYears from 'date-fns/difference_in_years'
 import format from 'date-fns/format'
 import User from '../../../app/assets/images/user.png'
 import { Link } from 'react-router-dom'
+import { userDetailedQuery } from '../userQueries'
 
 
-const query = ({auth}) => {
-  return [
-    {
-      collection: 'users',
-      doc: auth.uid,
-      subcollections: [{ collection: 'photos'}],
-      storeAs: 'photos'
-    }
-  ]
+const mapState = (state, ownProps) => {
+  let userUid = null;
+  let profile = {};
+
+  if (ownProps.match.params.id === state.auth.uid) {
+    profile = state.firebase.profile
+  } else {
+    profile = !isEmpty(state.firestore.ordered.profile) && state.firestore.ordered.profile[0];
+    userUid = ownProps.match.params.id;
+  }
+  return{
+    profile,
+    userUid,
+    auth: state.firebase.auth,
+    photos: state.firestore.ordered.photos
+  }
 }
-
-const mapState = (state) => ({
-  profile: state.firebase.profile,
-  auth: state.firebase.auth,
-  photos: state.firestore.ordered.photos
-})
 
 class UserDetailedPage extends Component {
     render() {
-      const { profile } = this.props
+      const { profile, auth, match } = this.props
+      const isCurrentUser = auth.uid === match.params.id
       let age;
        if (profile.dateOfBirth) {
          age = differenceInYears(Date.now(), profile.dateOfBirth.toDate())
@@ -91,7 +94,10 @@ class UserDetailedPage extends Component {
                 </Grid.Column>
                 <Grid.Column width={4}>
                     <Segment>
-                        <Button as={Link} to='/settings' color='teal' fluid basic content='Edit Profile'/>
+                      { isCurrentUser ?
+                        <Button as={Link} to='/settings' color='teal' fluid basic content='Edit Profile'/> :
+                        <Button color='teal' fluid basic content='Follow'/>
+                      }
                     </Segment>
                 </Grid.Column>
 
@@ -152,5 +158,5 @@ class UserDetailedPage extends Component {
 
 export default compose(
   connect(mapState),
-  firestoreConnect(auth => query(auth))
+  firestoreConnect((auth, userUid) => userDetailedQuery(auth, userUid))
 )(UserDetailedPage)

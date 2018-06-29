@@ -3,11 +3,12 @@ import { Segment, Item, Icon, List, Button, Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import format from 'date-fns/format'
 import EventListAtendee from './EventListAtendee'
+import { objectToArray } from '../../../app/common/utils/helpers';
 
 class EventListItem extends Component {
   renderAtendees = () => (
-    this.props.event.attendees && Object.values(this.props.event.attendees).map((attendee, index) => (
-      <EventListAtendee attendee={attendee} key={index}/>
+    this.props.event.attendees && objectToArray(this.props.event.attendees).map((attendee) => (
+      <EventListAtendee attendee={attendee} key={attendee.id}/>
     ))
   )
 
@@ -20,9 +21,9 @@ class EventListItem extends Component {
            <Item>
              <Item.Image size="tiny" circular src={ hostPhotoURL } />
              <Item.Content>
-               <Item.Header as="a">{ title }</Item.Header>
+               <Item.Header as={Link} to={`/event/${this.props.event.id}`}>{ title }</Item.Header>
                <Item.Description>
-                 Hosted by <a>{ hostedBy }</a>
+                 Hosted by <Link to={`/profile/${this.props.event.hostUid}`}>{ hostedBy }</Link>
                </Item.Description>
                { this.props.event.cancelled && <Label style={{ top: '-40px' }} ribbon='right' color='red' content="This event has been cancelled"/>}
              </Item.Content>
@@ -42,7 +43,6 @@ class EventListItem extends Component {
        </Segment>
        <Segment clearing>
          <span>{ description }</span>
-         <Button onClick={this.props.deleteEvent(this.props.event.id)} as="a" color="red" floated="right" content="Delete" />
          <Button as={Link} to={`/event/${this.props.event.id}`} color="teal" floated="right" content="View" />
        </Segment>
      </Segment.Group>

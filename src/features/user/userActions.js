@@ -2,6 +2,7 @@ import moment from 'moment';
 import { toastr } from 'react-redux-toastr';
 import cuid from 'cuid'
 import { asyncActionStart, asyncActionFinish, asyncActionError } from '../async/asyncActions'
+import User from '../../app/assets/images/user.png'
 
 
 export const updateProfile = (user) =>
@@ -88,7 +89,7 @@ export const setMainPhoto = (photo) =>
     const firebase = getFirebase();
     try {
       return await firebase.updateProfile({
-        photoURL: photo.url
+        photoURL: photo.url || User
       });
     } catch (error) {
       console.log(error)
@@ -104,7 +105,7 @@ export const setMainPhoto = (photo) =>
       const attendee = {
         going: true,
         joinDate: Date.now(),
-        photoURL: photoURL,
+        photoURL: photoURL || User,
         displayName: user.displayName,
         host: false
       }
