@@ -30,7 +30,7 @@ class EventListItem extends Component {
        </Segment>
        <Segment>
          <span>
-           <Icon name="clock" /> { format(this.props.event["date "].toDate(), 'dddd Do MMMM') }  at { format(this.props.event["date "].toDate(), 'HH:MM')}|
+           <Icon name="clock" /> { format(this.props.event["date"].toDate(), 'dddd Do MMMM') }  at { format(this.props.event["date"].toDate(), 'HH:MM')}|
            <Icon name="marker" /> { venue }
          </span>
        </Segment>

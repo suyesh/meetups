@@ -8,7 +8,6 @@ import moment from 'moment';
 import Script from 'react-load-script';
 import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan } from 'revalidate';
 import { reduxForm, Field } from 'redux-form';
-import cuid from 'cuid'
 import { createEvent, updateEvent } from '../eventActions';
 import TextInput from '../../../app/common/form/TextInput';
 import TextArea from '../../../app/common/form/TextArea';
@@ -96,13 +95,7 @@ class EventForm extends Component {
       this.props.updateEvent(values)
       this.props.history.goBack();
     } else {
-      const newEvent = {
-        ...values,
-        id: cuid(),
-        hostPhotoURL: '/assets/images/user.png',
-        hostedBy: 'Bob'
-      }
-      this.props.createEvent(newEvent)
+      this.props.createEvent(values)
       this.props.history.push('/events')
     }
   }
@@ -133,7 +126,7 @@ class EventForm extends Component {
                  component={SelectInput}
                  options={category}
                  placeholder="What is your event about?"
-                 multiple={true}
+                 multiple={false}
                />
                <Field
                  name='description'
