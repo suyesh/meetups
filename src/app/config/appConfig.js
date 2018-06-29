@@ -1,1 +1,1 @@
-export const toggleLogger = false
+export const toggleLogger = true

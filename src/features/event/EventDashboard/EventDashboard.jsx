@@ -9,7 +9,7 @@ import { firestoreConnect , isLoaded, isEmpty } from 'react-redux-firebase'
 
 const mapState = (state) => ({
   events: state.firestore.ordered.events,
-  loading: state.async.loading
+  // loading: state.async.loading
 })
 
 const actions = {
@@ -24,7 +24,7 @@ class EventDashboard extends Component {
 
   render(){
     const { events , loading} = this.props
-    if (!isLoaded(events) || isEmpty(events) || loading) return <LoadingComponent inverted={true}/>
+    // if (!isLoaded(events) || isEmpty(events) || loading) return <LoadingComponent inverted={true}/>
     return(
       <Grid stackable>
           <Grid.Column width={10}>

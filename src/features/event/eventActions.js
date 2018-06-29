@@ -30,6 +30,7 @@ export const createEvent = (event) => {
     }
 }
 
+
 export const updateEvent = (event) => {
     return async (dispatch , getState, {getFirestore}) => {
         const firestore = getFirestore();

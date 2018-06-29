@@ -4,10 +4,8 @@ import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
 import rootReducer from '../reducers/rootReducer';
 import thunk from 'redux-thunk'
-import logger from 'redux-logger'
 
 import firebase from '../config/firebase'
-import { toggleLogger } from '../config/appConfig'
 
 
 const rrfConfig = {
@@ -21,7 +19,7 @@ const ReduxThunk = thunk.withExtraArgument({ getFirebase, getFirestore })
 
 
 export const configureStore = (preloadedState) => {
-  const middlewares = toggleLogger ? [ReduxThunk,logger] : [ReduxThunk];
+  const middlewares = [ReduxThunk]
   const middlewareEnhancers = applyMiddleware(...middlewares);
 
   const storeEnhancers = [middlewareEnhancers];
