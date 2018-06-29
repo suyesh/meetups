@@ -5,7 +5,7 @@ import EventList from '../EventList/EventList';
 import { deleteEvent } from '../eventActions';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import EventActivity from '../EventActivity/EventActivity'
-import { firestoreConnect } from 'react-redux-firebase'
+import { firestoreConnect , isLoaded, isEmpty } from 'react-redux-firebase'
 
 const mapState = (state) => ({
   events: state.firestore.ordered.events,
@@ -24,7 +24,7 @@ class EventDashboard extends Component {
 
   render(){
     const { events , loading} = this.props
-    if (loading) return <LoadingComponent inverted={true}/>
+    if (!isLoaded(events) || isEmpty(events) || loading) return <LoadingComponent inverted={true}/>
     return(
       <Grid stackable>
           <Grid.Column width={10}>
